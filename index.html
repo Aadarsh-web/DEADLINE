@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Command Centre</title>
+	<link rel="stylesheet" href="style.css">
+	
+</head>
+<body>
+	<main class="calendar-app">
+		
+		<!-- ==========================================
+             CALENDAR HEADER
+             ========================================== -->
+		<header class="calendar-header">
+			<button id="prev-month"><-</button>
+			
+			<div class="month-title">
+				<p id="month-name">August</p>
+				<h1 id="year">2026</h1>
+				</div>
+			<button id="next-month">-></button>
+		</header>
+		
+		<!-- ==========================================
+			DEADLINE NOTIFICATION PANEL
+			========================================== -->
+
+		<div id="deadline-panel" class="deadline-panel">
+
+			<div class="deadline-header">
+			<span>! DEADLINES</span>
+			<span id="deadline-date">SELECT A DATE</span>
+			</div>
+
+			<div id="deadline-list">
+				<div class="no-deadlines">
+					> Select a date
+				</div>
+			</div>
+
+		</div>
+		<!-- ==========================================
+             CALENDAR
+             ========================================== -->
+		<section class="calendar">
+			<div class="weekday">SUN</div>
+			<div class="weekday">MON</div>
+			<div class="weekday">TUE</div>
+			<div class="weekday">WED</div>
+			<div class="weekday">THU</div>
+			<div class="weekday">FRI</div>
+			<div class="weekday">SAT</div>
+			
+			<div id="calendar-days"></div>
+		</section>
+		
+		<!-- ==========================================
+             SELECTED DATE / TASK PANEL
+             ========================================== -->
+		<div id="date-panel" class="date-panel">
+			<h2 id="selected-date-title">Select a date</h2>
+			
+			<div id="date-content">
+			
+				<div class="task-header">
+					<h3>Tasks</h3>
+				</div>
+				
+				<div id="task-list"></div>
+				
+				<!-- ==========================================
+                     TASK FORM
+                     ========================================== -->
+				<div class="task-form">
+					<input
+						type="text"
+						id="task-input"
+						placeholder="Enter task...">
+					
+					<select id="task-category">
+						<option value="general">General</option>
+						<option value="study">Study</option>
+						<option value="coding">Coding</option>
+						<option value="college">College</option>
+						<option value="personal">Personal</option>
+					</select>
+					
+					<select id="task-priority">
+						<option value="low">Low</option>
+						<option value="medium">Medium</option>
+						<option value="high">High</option>
+					</select>
+					
+					<button id="add-task-button">+ Add Task</button>
+				</div>
+			</div>
+		</div>
+	</main>
+	
+	<script src="script.js"></script>
+</body>
+</html>
