@@ -8,95 +8,144 @@
 </head>
 <body>
 	<main class="calendar-app">
+	
+		<div class="app-layout">
 		
-		<!-- ==========================================
-             CALENDAR HEADER
-             ========================================== -->
-		<header class="calendar-header">
-			<button id="prev-month"><-</button>
+			<!-- LEFT SIDEBAR -->
+			<aside class="sidebar">
 			
-			<div class="month-title">
-				<p id="month-name">August</p>
-				<h1 id="year">2026</h1>
+				<!-- DEADLINE NOTIFICATION PANEL -->
+
+				<div id="deadline-panel" class="deadline-panel">
+
+					<div class="deadline-header">
+						<span>! DEADLINES</span>
+						<span id="deadline-date">SELECT A DATE</span>
+					</div>
+
+					<div id="deadline-list">
+						<div class="no-deadlines">
+							> Select a date
+						</div>
+					</div>
+
 				</div>
-			<button id="next-month">-></button>
-		</header>
-		
-		<!-- ==========================================
-			DEADLINE NOTIFICATION PANEL
-			========================================== -->
 
-		<div id="deadline-panel" class="deadline-panel">
 
-			<div class="deadline-header">
-			<span>! DEADLINES</span>
-			<span id="deadline-date">SELECT A DATE</span>
-			</div>
+				<!-- SELECTED DATE / TASK PANEL -->
 
-			<div id="deadline-list">
-				<div class="no-deadlines">
-					> Select a date
+				<div id="date-panel" class="date-panel">
+					<h2 id="selected-date-title">Select a date</h2>
+					
+					<div id="date-content">
+					
+						<div class="task-header">
+							<h3>Tasks</h3>
+						</div>
+						
+						<div id="task-list"></div>
+						
+						<!-- TASK FORM -->
+						<div class="task-form">
+							<input
+								type="text"
+								id="task-input"
+								placeholder="Enter task...">
+							
+							<select id="task-category">
+								<option value="general">General</option>
+								<option value="study">Study</option>
+								<option value="coding">Coding</option>
+								<option value="college">College</option>
+								<option value="personal">Personal</option>
+							</select>
+							
+							<select id="task-priority">
+								<option value="low">Low</option>
+								<option value="medium">Medium</option>
+								<option value="high">High</option>
+							</select>
+							
+							<button id="add-task-button">+ Add Task</button>
+						</div>
+					</div>
 				</div>
-			</div>
 
-		</div>
-		<!-- ==========================================
-             CALENDAR
-             ========================================== -->
-		<section class="calendar">
-			<div class="weekday">SUN</div>
-			<div class="weekday">MON</div>
-			<div class="weekday">TUE</div>
-			<div class="weekday">WED</div>
-			<div class="weekday">THU</div>
-			<div class="weekday">FRI</div>
-			<div class="weekday">SAT</div>
+			</aside>
+
+
+			<!-- MAIN CALENDAR AREA -->
+			<section class="calendar-area">
 			
-			<div id="calendar-days"></div>
-		</section>
-		
-		<!-- ==========================================
-             SELECTED DATE / TASK PANEL
-             ========================================== -->
-		<div id="date-panel" class="date-panel">
-			<h2 id="selected-date-title">Select a date</h2>
-			
-			<div id="date-content">
-			
-				<div class="task-header">
-					<h3>Tasks</h3>
-				</div>
+				<!-- CALENDAR HEADER -->
+				<header class="calendar-header">
+					<button id="prev-month"><-</button>
+					
+					<div class="month-title">
+						<p id="month-name">August</p>
+						<h1 id="year">2026</h1>
+					</div>
+					
+					<button id="next-month">-></button>
+				</header>
 				
-				<div id="task-list"></div>
+				<!-- MARIO PIXEL ANIMATION -->
+					<canvas id="mario-canvas"></canvas>
+					
+				<!-- CALENDAR -->
+				<section class="calendar">
+					<div class="weekday">SUN</div>
+					<div class="weekday">MON</div>
+					<div class="weekday">TUE</div>
+					<div class="weekday">WED</div>
+					<div class="weekday">THU</div>
+					<div class="weekday">FRI</div>
+					<div class="weekday">SAT</div>
+					
+					<div id="calendar-days"></div>
+				</section>
 				
-				<!-- ==========================================
-                     TASK FORM
-                     ========================================== -->
-				<div class="task-form">
-					<input
-						type="text"
-						id="task-input"
-						placeholder="Enter task...">
-					
-					<select id="task-category">
-						<option value="general">General</option>
-						<option value="study">Study</option>
-						<option value="coding">Coding</option>
-						<option value="college">College</option>
-						<option value="personal">Personal</option>
-					</select>
-					
-					<select id="task-priority">
-						<option value="low">Low</option>
-						<option value="medium">Medium</option>
-						<option value="high">High</option>
-					</select>
-					
-					<button id="add-task-button">+ Add Task</button>
-				</div>
-			</div>
+				<!-- NEXT PAGE BOOKMARK -->
+				<button id="next-page-button" class="page-bookmark">
+				<span>→</span> 
+				</button>
+
+			</section>
+			
 		</div>
+		
 	</main>
+	
+		<!-- DEADLINE INVENTORY PAGE -->
+
+	<section id="deadline-page" class="deadline-page">
+
+		<header class="deadline-page-header">
+
+			<button id="back-to-calendar">
+				<- CALENDAR
+			</button>
+
+			<div class="deadline-page-title">
+				<p>DEADLINE</p>
+				<h1>INVENTORY</h1>
+			</div>
+
+		</header>
+
+
+		<!-- DEADLINE INVENTORY -->
+
+		<div id="deadline-inventory">
+
+			<!-- Deadline items will be generated here -->
+			<div class="inventory-empty">
+				> LOADING DEADLINES...
+			</div>
+
+		</div>
+
+	</section>
 	
 	<script src="script.js"></script>
 </body>
