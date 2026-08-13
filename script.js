@@ -1,6 +1,6 @@
-// ==========================================
+
 // DOM ELEMENTS
-// ==========================================
+ 
 const calendarDays= document.getElementById("calendar-days");
 
 const monthName= document.getElementById("month-name");
@@ -24,11 +24,16 @@ const deadlinePanel = document.getElementById("deadline-panel");
 const deadlineDate = document.getElementById("deadline-date");
 const deadlineList = document.getElementById("deadline-list");
 
+const nextPageButton = document.getElementById("next-page-button");
+const deadlinePage = document.getElementById("deadline-page");
+const calendarApp = document.querySelector(".calendar-app");
+const backToCalendar = document.getElementById("back-to-calendar");
 
-// ==========================================
+
+
 // RETRO CURSOR SOUND
 // Creates a tiny computer-like beep using JavaScript
-// ==========================================
+
 
 let audioContext = null;
 
@@ -540,6 +545,239 @@ document.addEventListener("keydown", function(event) {
 });
 
 
+// ==========================================
+// DEADLINE PAGE NAVIGATION
+// ==========================================
+
+nextPageButton.addEventListener("click", function() {
+
+	calendarApp.style.display = "none";
+
+	deadlinePage.style.display = "block";
+
+	renderDeadlineInventory();
+
+});
+
+// ==========================================
+// BACK TO CALENDAR
+// ==========================================
+
+backToCalendar.addEventListener("click", function() {
+
+    deadlinePage.style.display = "none";
+
+    calendarApp.style.display = "block";
+
+});
+
+
+
+// ==========================================
+// DEADLINE INVENTORY
+// Generates deadline items from existing tasks
+// ==========================================
+
+function renderDeadlineInventory() {
+
+	const inventory =
+		document.getElementById("deadline-inventory");
+
+	inventory.innerHTML = "";
+
+	let allTasks = [];
+
+	// Collect tasks from every date
+	for (const dateKey in tasks) {
+
+		const dateTasks = tasks[dateKey];
+
+		dateTasks.forEach(function(task) {
+
+			allTasks.push({
+				task: task,
+				dateKey: dateKey
+			});
+
+		});
+	}
+
+
+	// No tasks
+	if (allTasks.length === 0) {
+
+		const emptyMessage =
+			document.createElement("div");
+
+		emptyMessage.classList.add("inventory-empty");
+
+		emptyMessage.textContent =
+			"> NO DEADLINES";
+
+		inventory.appendChild(emptyMessage);
+
+		return;
+	}
+
+
+	// Generate each inventory item
+	allTasks.forEach(function(item) {
+
+		const task = item.task;
+		const dateKey = item.dateKey;
+
+
+		// Main item
+		const inventoryItem =
+			document.createElement("div");
+
+		inventoryItem.classList.add("inventory-item");
+
+
+		// Image
+		const imageContainer =
+			document.createElement("div");
+
+		imageContainer.classList.add(
+			"inventory-image"
+		);
+
+		const image =
+			document.createElement("img");
+
+		// Temporary placeholder
+		image.src = "cherry-blossom.jpeg";
+
+		image.alt = task.title;
+
+		imageContainer.appendChild(image);
+
+
+		// Information
+		const info =
+			document.createElement("div");
+
+		info.classList.add("inventory-info");
+
+
+		// Title
+		const title =
+			document.createElement("h2");
+
+		title.textContent =
+			task.title;
+
+
+		// Separator
+		const line =
+			document.createElement("div");
+
+		line.classList.add("inventory-line");
+
+
+		// Metadata
+		const meta =
+			document.createElement("div");
+
+		meta.classList.add("inventory-meta");
+
+
+		const category =
+			document.createElement("span");
+
+		category.textContent =
+			task.category;
+
+
+		const priority =
+			document.createElement("span");
+
+		priority.textContent =
+			task.priority;
+
+
+		const date =
+			document.createElement("span");
+
+		date.textContent =
+			dateKey;
+
+
+		meta.appendChild(category);
+		meta.appendChild(priority);
+		meta.appendChild(date);
+
+
+		info.appendChild(title);
+		info.appendChild(line);
+		info.appendChild(meta);
+
+
+		inventoryItem.appendChild(imageContainer);
+		inventoryItem.appendChild(info);
+
+		inventory.appendChild(inventoryItem);
+
+	});
+
+}
+
+// ==========================================
+// PIXEL MARIO
+// ==========================================
+
+const marioCanvas =
+    document.getElementById("mario-canvas");
+
+const marioContext =
+    marioCanvas.getContext("2d");
+
+
+// ==========================================
+// REAL MARIO SPRITE
+// Super Mario Bros. 3 Battle Mario
+// ==========================================
+
+const marioImage = new Image();
+
+marioImage.src = "mario-battle-stand.png";
+
+// ==========================================
+// DRAW MARIO
+// ==========================================
+
+function drawMario() {
+
+    if (!marioImage.complete) {
+        return;
+    }
+
+    marioCanvas.width = 16;
+    marioCanvas.height = 16;
+
+    marioContext.imageSmoothingEnabled = false;
+
+    marioContext.clearRect(
+        0,
+        0,
+        marioCanvas.width,
+        marioCanvas.height
+    );
+
+    marioContext.drawImage(
+        marioImage,
+        0,
+        0,
+        16,
+        16
+    );
+}
+
+marioImage.onload = function() {
+
+    drawMario();
+
+};
 
 
 
